@@ -1,0 +1,31 @@
+#!/bin/sh
+OUT=./tmp/openapi/openapi.yaml
+BACKUP=./tmp/openapi/openapi.yaml.bak
+
+# オプションを解析する
+while getopts "s" opt; do
+  case $opt in
+    s)
+      skip_build=true
+      ;;
+    *)
+      echo "Usage: $0 [-s] (skip build)"
+      exit 1
+      ;;
+  esac
+done
+
+# YAMLファイルのリンター
+redocly lint ./src/openapi.yaml
+# 一つのYAMLファイルにまとめる
+openapi-generator-cli generate -g openapi-yaml -i ./src/openapi.yaml -o tmp
+# ソートする
+yml-sorter -i $OUT -o $OUT
+# ビルド処理をスキップする場合、早期終了
+if [ "$skip_build" = true ]; then
+  exit 0  # 正常終了でスクリプトを終了
+fi
+# ドキュメントをビルドする
+npx @redocly/cli build-docs $OUT -o ./dest/index.html
+# 比較用ファイルを作成する
+cp $OUT $BACKUP

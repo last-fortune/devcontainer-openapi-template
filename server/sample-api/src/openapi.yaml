@@ -1,0 +1,30 @@
+openapi: 3.1.0
+info:
+  title: Sample API
+  description: "Sample API description"
+  version: 0.1.10
+
+servers:
+  - url: http://api.<your-site>.com/v1
+    description: 本番サーバー
+  - url: http://staging-api.<your-site>.com
+    description: 開発サーバー
+
+paths:
+  /users:
+    get:
+      operationId: get-users
+      summary: users
+      description: |
+        **Markdown記法**が使えます。
+      security: 
+        -  {}
+      responses:
+        "200":
+          description: A JSON array of user names
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

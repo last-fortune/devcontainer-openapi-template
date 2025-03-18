@@ -1,0 +1,45 @@
+{
+  "name": "node22-openapi",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "node22-openapi",
+  "workspaceFolder": "/app",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redocly.openapi-vs-code",
+        "github.copilot",
+        "github.copilot-labs",
+        "oderwat.indent-rainbow",
+        "mhutchie.git-graph",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "vscode-icons-team.vscode-icons",
+        "stylelint.vscode-stylelint"
+      ],
+      "settings": {
+        "eslint.options": {
+          "extensions": [".js", ".ts"]
+        },
+        "eslint.validate": ["typescript", "javascript"],
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "never",
+          "source.fixAll.eslint": "explicit",
+          "source.fixAll.stylelint": "explicit"
+        },
+        "typescript.preferences.importModuleSpecifierEnding": "minimal",
+        "eslint.format.enable": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "prettier.trailingComma": "all",
+        "prettier.useEditorConfig": false,
+        "prettier.jsxSingleQuote": true,
+        "prettier.printWidth": 100,
+        "prettier.semi": true,
+        "prettier.singleQuote": true,
+        "prettier.tabWidth": 2
+      }
+    }
+  }
+}

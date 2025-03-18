@@ -1,0 +1,6 @@
+tmp/.openapi-generator-ignore
+tmp/.openapi-generator/*
+tmp/hsperfdata_root/*
+tmp/READEME.md
+dest/*
+!dest/.gitkeep

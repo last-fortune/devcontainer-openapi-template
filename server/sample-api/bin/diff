@@ -1,0 +1,13 @@
+#!/bin/sh
+
+OUT=/tmp/openapi/openapi.yaml
+OLD=/tmp/openapi/openapi.yaml.bak
+DIFF_MOUNTED=/tmp/openapi/diff.md
+DIFF=".$DIFF_MOUNTED"
+./bin/build -s
+
+pwd
+docker run --rm -t \
+    -v $(pwd)/tmp:/tmp:rw \
+    openapitools/openapi-diff:latest $OLD $OUT --markdown $DIFF_MOUNTED
+cat $DIFF
